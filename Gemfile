@@ -10,7 +10,8 @@ gem "sprockets-rails"
 gem 'pry'
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
-
+gem 'uri'
+gem 'net-http'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 

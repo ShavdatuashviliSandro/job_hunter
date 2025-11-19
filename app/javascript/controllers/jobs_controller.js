@@ -7,6 +7,7 @@ export default class extends Controller {
         fetch("/jobs/refresh")
             .then(response => response.json())
             .then(data => {
+                debugger
                 // Clears the content
                 this.listTarget.innerHTML = ""
 
