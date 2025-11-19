@@ -1,0 +1,14 @@
+<h1>Jobs</h1>
+
+<div data-controller="jobs">
+  <button data-action="click->jobs#refresh">Refresh</button>
+
+  <ul data-jobs-target="list">
+    <% @jobs.each do |job| %>
+      <li>
+        <strong><%= job.title %></strong> at <%= job.company %><br>
+        <%= job.description %> <a href="<%= job.link %>" target="_blank">Link</a>
+      </li>
+    <% end %>
+  </ul>
+</div>
