@@ -7,9 +7,9 @@ export default class extends Controller {
         fetch("/jobs/refresh")
             .then(response => response.json())
             .then(data => {
+                // Clears the content
                 this.listTarget.innerHTML = ""
-                console.log(1)
-                // Add jobs dynamically
+
                 data.forEach(job => {
                     const li = document.createElement("li")
                     li.innerHTML = `<strong>${job.title}</strong> at ${job.company}<br>${job.description} <a href="${job.link}" target="_blank">Link</a>`

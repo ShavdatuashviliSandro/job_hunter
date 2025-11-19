@@ -4,7 +4,6 @@ class JobsController < ApplicationController
   end
 
   def refresh
-    print 1
     @jobs = Job.order("RANDOM()").limit(5) # fetch random jobs as "new" ones
     render json: @jobs
   end
