@@ -10,6 +10,18 @@ class JobsController < ApplicationController
     render json: { data:, success: 200 }
   end
 
+  def example_fetch
+    url = URI('https://jsonplaceholder.typicode.com/todos/')
+    response = Net::HTTP.get(url)
+    todos = JSON.parse(response)
+
+    sample_payloads = todos.first(10).map(&:to_json)
+    dictionary = Zstd::DictTrainer.train(sample_payloads.map(&:bytes), 1024)
+
+    # Save dictionary to file (optional)
+    File.write('shared_dict.zstd', dictionary)
+  end
+
   private
 
   def fetch_jobs
@@ -30,7 +42,6 @@ class JobsController < ApplicationController
   end
 
   def create_jobs(jobs)
-    binding.pry
     jobs.each do |job|
       Job.create(title: job['job_title'], company: job['company'], description: job['description'], link: job['url'])
     end
